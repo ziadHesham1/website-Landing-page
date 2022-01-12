@@ -7,7 +7,12 @@
  * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
  *
 */
+/*Global variables*/
 
+:root{
+    --activeTabColor: #02103e;
+
+}
 
 /* ---- Base Rules ---- */
 body {
@@ -18,6 +23,9 @@ body {
     color: #fff;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 /* Typeography General*/
 h1 {
@@ -64,14 +72,29 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+
+
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .navbar__menu li {
     display: inline-block;
+
+}
+
+.navbar__menu li a {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 40px 10px;
+    transition: 0.3s;
+    position: relative;
+    z-index: 2;
 }
 
 .navbar__menu .menu__link {
@@ -83,9 +106,26 @@ section {
 }
 
 .navbar__menu .menu__link:hover {
-    background: #333;
+    background: var(--activeTabColor);
+
     color: #fff;
-    transition:all 0.3s ease  ;
+    transition: all 0.3s ease;
+}
+
+
+
+
+.navbar__menu .your-active-tab{
+    background: var(--activeTabColor);
+
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.navbar__menu .menu__link:hover a
+,.navbar__menu .your-active-tab a{
+    color: white;
+    font-size: .8em;
 }
 
 /* Header Styles */
@@ -141,7 +181,7 @@ section:nth-of-type(odd) .landing__container::before {
     height: 20vh;
     border-radius: 50%;
     opacity: 0;
-    transition:all 0.3s ease  ;
+    transition: all 0.3s ease;
 }
 
 section:nth-of-type(even) .landing__container::before {
@@ -156,7 +196,7 @@ section:nth-of-type(even) .landing__container::before {
     height: 10vh;
     border-radius: 50%;
     opacity: 0;
-    transition:all 0.3s ease  ;
+    transition: all 0.3s ease;
 }
 
 section:nth-of-type(3n) .landing__container::after {
@@ -171,7 +211,7 @@ section:nth-of-type(3n) .landing__container::after {
     height: 10vh;
     border-radius: 50%;
     opacity: 0;
-    transition:all 0.3s ease  ;
+    transition: all 0.3s ease;
 }
 
 section:nth-of-type(3n + 1) .landing__container::after {
@@ -186,7 +226,7 @@ section:nth-of-type(3n + 1) .landing__container::after {
     height: 15vh;
     border-radius: 50%;
     opacity: 0;
-    transition:all 0.3s ease  ;
+    transition: all 0.3s ease;
 }
 
 
@@ -195,7 +235,7 @@ section:nth-of-type(3n + 1) .landing__container::after {
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
     background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(0deg, rgba(155, 144, 144, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 section.your-active-class .landing__container::before {
