@@ -1,5 +1,6 @@
 // create variable holds ul that will contain the tabs
-let menuTabs = document.getElementById('navbar__list');
+let menu = document.getElementById('navbar__list');
+
 
 // create variable holds all current section
 let allSections = document.querySelectorAll('section');
@@ -41,8 +42,25 @@ let sectionNumbers = allSections.length;
 // every current section have corresponding tab
 for (let i = 1; i <= sectionNumbers; i++) {
     // append new tab to ul
-    menuTabs.appendChild(createTab(i));
+    menu.appendChild(createTab(i));
 }
+
+let menuTabs = Array.from(document.getElementsByClassName("menu__link"));
+
+
+function adjustActiveTab(ele) {
+    ele.addEventListener("click", function (e) {
+        // console.log(ele);
+        menuTabs.forEach((ele) => {
+            ele.classList.remove("your-active-tab");
+        });
+        console.log(e.currentTarget.classList);
+        e.currentTarget.classList.add("your-active-tab");
+    });
+}
+
+
+menuTabs.forEach(adjustActiveTab);
 
 
 // set active theme to the visible section when scrolling
@@ -60,4 +78,8 @@ function adjustActiveClass() {
 
 window.addEventListener("scroll", adjustActiveClass);
 
-
+/*what next:
+* add some comments
+* check scroll other method
+* complete readme file
+* */
