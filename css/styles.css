@@ -9,7 +9,7 @@
 */
 /*Global variables*/
 
-:root{
+:root {
     --activeTabColor: #02103e;
 
 }
@@ -90,12 +90,25 @@ section {
 .navbar__menu li a {
     color: black;
     text-decoration: none;
-    font-size: 14px;
     padding: 40px 10px;
     transition: 0.3s;
     position: relative;
     z-index: 2;
 }
+
+
+/*Mobile*/
+@media (max-width: 576px) {
+    .navbar__menu li a {
+        font-size: 11px;
+    }
+}
+@media (min-width: 768px) {
+    .navbar__menu li a {
+        font-size: 14px;
+    }
+}
+
 
 .navbar__menu .menu__link {
     display: block;
@@ -113,17 +126,14 @@ section {
 }
 
 
-
-
-.navbar__menu .your-active-tab{
+.navbar__menu .your-active-tab {
     background: var(--activeTabColor);
 
     color: #fff;
     transition: all 0.3s ease;
 }
 
-.navbar__menu .menu__link:hover a
-,.navbar__menu .your-active-tab a{
+.navbar__menu .menu__link:hover a, .navbar__menu .your-active-tab a {
     color: white;
     font-size: .8em;
 }
