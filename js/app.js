@@ -10,6 +10,8 @@ let SECTION_ACTIVE_CLASS = "your-active-class";
 
 
 // add tabs of current sections
+//------------------------------
+
 
 /**
  * returns anchor element with href and text content
@@ -20,7 +22,7 @@ function createAnchor(i) {
     let link = document.createElement("a");
     // momkn a8erha w3ml elly felvideo
     // set a href to it's section id
-    link.href = `#section${i}`;
+    link.setAttribute("data-link", `section${i}`);
     // set tab text to section + i
     link.textContent = `Section ${i}`;
     return link;
@@ -48,7 +50,6 @@ function createTab(i) {
 // get number of current sections
 let sectionNumbers = allSections.length;
 
-
 /**
  * loop in range of sections number
  *  append created tabs to the ul
@@ -58,9 +59,29 @@ for (let i = 1; i <= sectionNumbers; i++) {
     // append new tab to ul
     menu.appendChild(createTab(i));
 }
+//===================================================================================
 
+//declare variables
 let menuTabs = Array.from(document.getElementsByClassName("menu__link"));
 
+let menuTabLinks = Array.from(document.querySelectorAll(".menu__link a"));
+//=================================================
+
+//functions definition
+
+/**
+ * this function takes list of links as an argument
+ *scrolls to the element with id equal value of data-link attribute
+ * @param links
+ */
+function scrollToElement(links) {
+    links.forEach((link) => {
+        link.addEventListener("click", function () {
+            let middleText = document.getElementById(link.getAttribute("data-link"));
+            middleText.scrollIntoView({behavior: "smooth", block: "start"});
+        });
+    });
+}
 
 /**
  * delete your-active-tab class from all tabs
@@ -82,30 +103,53 @@ function adjustActiveTabByClick(ele) {
     ele.addEventListener("click", toggleActiveTab);
 }
 
+// set active theme to the visible section when scrolling
+
+function adjustActiveClass(elementsList) {
+    const options = {
+        threshold: .5
+    };
+
+
+    const observer = new
+    IntersectionObserver(
+        function (entries
+            , observer) {
+
+            entries.forEach((item) => {
+                if (item.isIntersecting) {
+
+                    // console.log(`${item.target.textContent} is Intersecting now`);
+                    item.target.classList.add(SECTION_ACTIVE_CLASS);
+                    getSectionTab(item.target.id);
+                    // console.log(itsTab);
+
+                } else {
+                    // console.log(`${item.target.textContent} is not Intersecting now`);
+                    item.target.classList.remove(SECTION_ACTIVE_CLASS);
+                }
+
+            })
+        }, options);
+
+
+    elementsList.forEach((item) => {
+        observer.observe(item)
+    });
+}
+//=================================================
+
+//functions calling
+scrollToElement(menuTabLinks);
 
 menuTabs.forEach(adjustActiveTabByClick);
 
-
-// set active theme to the visible section when scrolling
-
-function adjustActiveClass() {
-    for (let section of allSections) {
-        let top = section.getBoundingClientRect().top;
-        if (top >= 0) {
-            section.classList.add(SECTION_ACTIVE_CLASS);
-        } else {
-            section.classList.remove(SECTION_ACTIVE_CLASS);
-        }
-    }
-}
-
-
-window.addEventListener("scroll", adjustActiveClass);
+adjustActiveClass(allSections);
 
 /*what next:
 * add some comments
-* check scroll other method (s3at bdos wmyt7rksh) Talbha fel rubricK
-* check viewPort other method
 * complete readme file
 * reorganize code if possible
+* check viewPort other method(done)
+* check scroll other method (s3at bdos wmyt7rksh) Talbha fel rubricK (done)
 * */
