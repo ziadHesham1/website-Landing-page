@@ -1,12 +1,13 @@
 // create variable holds ul that will contain the tabs
 let menu = document.getElementById('navbar__list');
 
-
 // create variable holds all current section
-let allSections = document.querySelectorAll('section');
+let allSections = Array.from(document.querySelectorAll('section'));
+
 
 let TAB_ACTIVE_CLASS = "your-active-tab";
 let SECTION_ACTIVE_CLASS = "your-active-class";
+let DATA_ATTRIBUTE = "data-link";
 
 
 // add tabs of current sections
@@ -22,7 +23,7 @@ function createAnchor(i) {
     let link = document.createElement("a");
     // momkn a8erha w3ml elly felvideo
     // set a href to it's section id
-    link.setAttribute("data-link", `section${i}`);
+    link.setAttribute(DATA_ATTRIBUTE, `section${i}`);
     // set tab text to section + i
     link.textContent = `Section ${i}`;
     return link;
@@ -39,7 +40,6 @@ function createTab(i) {
     let newTab = document.createElement("li");
     // set new tab class
     newTab.className = "menu__link";
-    // newTab.id = `section${i}`;
 
     //append link to new tab
     newTab.appendChild(createAnchor(i));
@@ -47,70 +47,91 @@ function createTab(i) {
     return newTab;
 }
 
-// get number of current sections
-let sectionNumbers = allSections.length;
-
 /**
  * loop in range of sections number
  *  append created tabs to the ul
  *  every current section have corresponding tab
  */
-for (let i = 1; i <= sectionNumbers; i++) {
+for (let i = 1; i <= allSections.length; i++) {
     // append new tab to ul
     menu.appendChild(createTab(i));
 }
 //===================================================================================
 
 //declare variables
-let menuTabs = Array.from(document.getElementsByClassName("menu__link"));
+let menuTabs = Array.from(document.querySelectorAll(".menu__link"));
 
-let menuTabLinks = Array.from(document.querySelectorAll(".menu__link a"));
+// let menuTabLinks = Array.from(document.querySelectorAll(".menu__link a"));
 //=================================================
 
-//functions definition
+/*
+* Now we need to click one of the menu tabs and it takes me to its corresponding section
+* and change clicked tab style to active mode
+* */
 
-/**
- * this function takes list of links as an argument
- *scrolls to the element with id equal value of data-link attribute
- * @param links
- */
-function scrollToElement(links) {
-    links.forEach((link) => {
-        link.addEventListener("click", function () {
-            let middleText = document.getElementById(link.getAttribute("data-link"));
-            middleText.scrollIntoView({behavior: "smooth", block: "start"});
-        });
+
+/*
+*this function will take the clicked tab as an argument
+* then scroll to this tab corresponding section
+**/
+function scrollToSection(clickedTab) {
+    let TAB_DATA_ATTRIBUTE = clickedTab.firstChild.getAttribute(DATA_ATTRIBUTE);
+    let destinationSection = document.getElementById(TAB_DATA_ATTRIBUTE);
+    destinationSection.scrollIntoView({behavior: "smooth", block: "start"});
+
+}
+
+/*
+*this function will take the clicked tab as an argument
+* then adds TAB_ACTIVE_CLASS to its class list to have active style 
+**/
+
+function toggleActiveTabByClick(clickedTab) {
+    menuTabs.forEach((menuTab) => {
+        menuTab.classList.remove(TAB_ACTIVE_CLASS);
     });
+    console.log(clickedTab);
+
+    clickedTab.classList.add(TAB_ACTIVE_CLASS);
+
 }
 
-/**
- * delete your-active-tab class from all tabs
- * then set the class for the tab (e)
- */
-function toggleActiveTab(e) {
 
-    menuTabs.forEach((ele) => {
-        ele.classList.remove(TAB_ACTIVE_CLASS);
+/*
+* here we loop through all menu tabs to detect when one of them is clicked
+* when there is a tab clicked it just pass this tab to toggleActiveTab and scrollToSection functions
+* */
+menuTabs.forEach(tab => {
+    tab.addEventListener("click", (clickedTab) => {
+        clickedTab.preventDefault();
+        scrollToSection(clickedTab.currentTarget);
+        toggleActiveTabByClick(clickedTab.currentTarget);
     });
-    e.currentTarget.classList.add(TAB_ACTIVE_CLASS);
-    e.scrollIntoView();
+});
+
+
+function toggleActiveTabByScroll(activeSection) {
+
+    let sectionId = activeSection.id;
+
+    menuTabs.forEach((tab) => {
+        let TAB_DATA_LINK = tab.firstChild.getAttribute(DATA_ATTRIBUTE);
+
+        if (sectionId === TAB_DATA_LINK) {
+            tab.classList.add(TAB_ACTIVE_CLASS);
+        } else {
+            tab.classList.remove(TAB_ACTIVE_CLASS);
+        }
+    })
 }
 
-/**
- * pass the clicked tab (e) to toggleActiveTab
- */
-function adjustActiveTabByClick(ele) {
-    ele.addEventListener("click", toggleActiveTab);
-}
 
 // set active theme to the visible section when scrolling
-
+// and when one of the sections is visible on screen it should change its style to active mode
 function adjustActiveClass(elementsList) {
     const options = {
         threshold: .5
     };
-
-
     const observer = new
     IntersectionObserver(
         function (entries
@@ -118,38 +139,36 @@ function adjustActiveClass(elementsList) {
 
             entries.forEach((item) => {
                 if (item.isIntersecting) {
-
-                    // console.log(`${item.target.textContent} is Intersecting now`);
                     item.target.classList.add(SECTION_ACTIVE_CLASS);
-                    getSectionTab(item.target.id);
-                    // console.log(itsTab);
-
+                    toggleActiveTabByScroll(item.target);
                 } else {
-                    // console.log(`${item.target.textContent} is not Intersecting now`);
                     item.target.classList.remove(SECTION_ACTIVE_CLASS);
                 }
-
             })
         }, options);
-
 
     elementsList.forEach((item) => {
         observer.observe(item)
     });
 }
-//=================================================
-
-//functions calling
-scrollToElement(menuTabLinks);
-
-menuTabs.forEach(adjustActiveTabByClick);
 
 adjustActiveClass(allSections);
 
+//=================================================
+
+//functions calling
+
+
 /*what next:
+* try using data-nav to add <a> text 
+* try this :
+* 
+* try scroll to top button
 * add some comments
 * complete readme file
 * reorganize code if possible
+* try active tab when scrolling(done)
 * check viewPort other method(done)
 * check scroll other method (s3at bdos wmyt7rksh) Talbha fel rubricK (done)
 * */
+
