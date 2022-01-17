@@ -161,8 +161,7 @@ adjustActiveClass(allSections);
 
 /*what next:
 * try using data-nav to add <a> text 
-* try this :
-* 
+* edit menu style for small screens (check udacity tips)
 * try scroll to top button
 * add some comments
 * complete readme file
