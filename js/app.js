@@ -2,7 +2,7 @@
 let menu = document.getElementById('navbar__list');
 
 // create variable holds all current section
-let allSections = Array.from(document.querySelectorAll('section'));
+let sectionsArray = Array.from(document.querySelectorAll('section'));
 
 
 let TAB_ACTIVE_CLASS = "your-active-tab";
@@ -10,13 +10,10 @@ let SECTION_ACTIVE_CLASS = "your-active-class";
 let DATA_ATTRIBUTE = "data-link";
 
 
-// add tabs of current sections
-//------------------------------
-
-
 /**
- * returns anchor element with href and text content
- * to append inside the new tab
+ * create anchor element with href and text content
+ * @param {number} i the number of section currently creating
+ * @return {HTMLAnchorElement}link
  */
 function createAnchor(i) {
     // create anchor as child to li (a)
@@ -31,9 +28,9 @@ function createAnchor(i) {
 
 
 /**
- * returns li element and append the anchor inside it
- * to append it inside the menu(ul)
-
+ * create li element and append the anchor inside it
+ * @param {number} i the number of section currently creating
+ * @return {HTMLLIElement} newTab
  */
 function createTab(i) {
     // create new tab (li)
@@ -47,45 +44,34 @@ function createTab(i) {
     return newTab;
 }
 
-/**
- * loop in range of sections number
- *  append created tabs to the ul
- *  every current section have corresponding tab
- */
-for (let i = 1; i <= allSections.length; i++) {
-    // append new tab to ul
-    menu.appendChild(createTab(i));
-}
-//===================================================================================
+// append created tabs to the ul for each existing section
+sectionsArray.forEach((val, i) => menu.appendChild(createTab(i + 1)));
 
-//declare variables
+// create variable holds created li elements
 let menuTabs = Array.from(document.querySelectorAll(".menu__link"));
-
-// let menuTabLinks = Array.from(document.querySelectorAll(".menu__link a"));
-//=================================================
-
-/*
-* Now we need to click one of the menu tabs and it takes me to its corresponding section
-* and change clicked tab style to active mode
-* */
 
 
 /*
 *this function will take the clicked tab as an argument
 * then scroll to this tab corresponding section
 **/
+
+
+/**
+ * scroll to clicked tab corresponding section
+ * @param clickedTab
+ */
 function scrollToSection(clickedTab) {
     let TAB_DATA_ATTRIBUTE = clickedTab.firstChild.getAttribute(DATA_ATTRIBUTE);
     let destinationSection = document.getElementById(TAB_DATA_ATTRIBUTE);
     destinationSection.scrollIntoView({behavior: "smooth", block: "start"});
-
 }
 
-/*
-*this function will take the clicked tab as an argument
-* then adds TAB_ACTIVE_CLASS to its class list to have active style 
-**/
 
+/**
+ * add TAB_ACTIVE_CLASS to clicked tab class list to have active state
+ * @param clickedTab
+ */
 function toggleActiveTabByClick(clickedTab) {
     menuTabs.forEach((menuTab) => {
         menuTab.classList.remove(TAB_ACTIVE_CLASS);
@@ -110,6 +96,10 @@ menuTabs.forEach(tab => {
 });
 
 
+/**
+ * add active state for the tab corresponding to the section in the viewport
+ * @param activeSection
+ */
 function toggleActiveTabByScroll(activeSection) {
 
     let sectionId = activeSection.id;
@@ -126,37 +116,27 @@ function toggleActiveTabByScroll(activeSection) {
 }
 
 
-// set active theme to the visible section when scrolling
-// and when one of the sections is visible on screen it should change its style to active mode
-function adjustActiveClass(elementsList) {
-    const options = {
-        threshold: .5
-    };
-    const observer = new
-    IntersectionObserver(
-        function (entries
-            , observer) {
+/**
+ * set active state to the the section in the viewport
+ * pass the section in the viewport to toggleActiveTabByScroll function
+ * @param entries
+ */
 
-            entries.forEach((item) => {
-                if (item.isIntersecting) {
-                    item.target.classList.add(SECTION_ACTIVE_CLASS);
-                    toggleActiveTabByScroll(item.target);
-                } else {
-                    item.target.classList.remove(SECTION_ACTIVE_CLASS);
-                }
-            })
-        }, options);
+function observerAction(entries) {
 
-    elementsList.forEach((item) => {
-        observer.observe(item)
-    });
+    entries.forEach((item) => {
+        if (item.isIntersecting) {
+            item.target.classList.add(SECTION_ACTIVE_CLASS);
+            toggleActiveTabByScroll(item.target);
+        } else {
+            item.target.classList.remove(SECTION_ACTIVE_CLASS);
+        }
+    })
 }
 
-adjustActiveClass(allSections);
+const observer = new IntersectionObserver(observerAction, {threshold: .5});
 
-//=================================================
-
-//functions calling
+sectionsArray.forEach(item => observer.observe(item));
 
 
 /*what next:
