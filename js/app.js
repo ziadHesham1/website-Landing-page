@@ -151,3 +151,8 @@ sectionsArray.forEach(item => observer.observe(item));
 * check scroll other method (s3at bdos wmyt7rksh) Talbha fel rubricK (done)
 * */
 
+/*
+* ERRORS
+* there is an error when loading page in the console
+* another one appear when tried in edge
+* */
