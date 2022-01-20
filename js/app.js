@@ -5,9 +5,9 @@ let menu = document.getElementById('navbar__list');
 let allSections = Array.from(document.querySelectorAll('section'));
 
 
-let TAB_ACTIVE_CLASS = "your-active-tab";
-let SECTION_ACTIVE_CLASS = "your-active-class";
-let DATA_ATTRIBUTE = "data-link";
+let TAB_ACTIVE_CLASS = 'your-active-tab';
+let SECTION_ACTIVE_CLASS = 'your-active-class';
+let DATA_ATTRIBUTE = 'data-link';
 
 
 // add tabs of current sections
@@ -20,7 +20,7 @@ let DATA_ATTRIBUTE = "data-link";
  */
 function createAnchor(i) {
     // create anchor as child to li (a)
-    let link = document.createElement("a");
+    let link = document.createElement('a');
     // momkn a8erha w3ml elly felvideo
     // set a href to it's section id
     link.setAttribute(DATA_ATTRIBUTE, `section${i}`);
@@ -37,9 +37,9 @@ function createAnchor(i) {
  */
 function createTab(i) {
     // create new tab (li)
-    let newTab = document.createElement("li");
+    let newTab = document.createElement('li');
     // set new tab class
-    newTab.className = "menu__link";
+    newTab.className = 'menu__link';
 
     //append link to new tab
     newTab.appendChild(createAnchor(i));
@@ -59,9 +59,9 @@ for (let i = 1; i <= allSections.length; i++) {
 //===================================================================================
 
 //declare variables
-let menuTabs = Array.from(document.querySelectorAll(".menu__link"));
+let menuTabs = Array.from(document.querySelectorAll('.menu__link'));
 
-// let menuTabLinks = Array.from(document.querySelectorAll(".menu__link a"));
+// let menuTabLinks = Array.from(document.querySelectorAll('.menu__link a'));
 //=================================================
 
 /*
@@ -77,7 +77,7 @@ let menuTabs = Array.from(document.querySelectorAll(".menu__link"));
 function scrollToSection(clickedTab) {
     let TAB_DATA_ATTRIBUTE = clickedTab.firstChild.getAttribute(DATA_ATTRIBUTE);
     let destinationSection = document.getElementById(TAB_DATA_ATTRIBUTE);
-    destinationSection.scrollIntoView({behavior: "smooth", block: "start"});
+    destinationSection.scrollIntoView({behavior: 'smooth', block: 'start'});
 
 }
 
@@ -102,7 +102,7 @@ function toggleActiveTabByClick(clickedTab) {
 * when there is a tab clicked it just pass this tab to toggleActiveTab and scrollToSection functions
 * */
 menuTabs.forEach(tab => {
-    tab.addEventListener("click", (clickedTab) => {
+    tab.addEventListener('click', (clickedTab) => {
         clickedTab.preventDefault();
         scrollToSection(clickedTab.currentTarget);
         toggleActiveTabByClick(clickedTab.currentTarget);
@@ -158,16 +158,4 @@ adjustActiveClass(allSections);
 
 //functions calling
 
-
-/*what next:
-* try using data-nav to add <a> text 
-* edit menu style for small screens (check udacity tips)
-* try scroll to top button
-* add some comments
-* complete readme file
-* reorganize code if possible
-* try active tab when scrolling(done)
-* check viewPort other method(done)
-* check scroll other method (s3at bdos wmyt7rksh) Talbha fel rubricK (done)
-* */
 
