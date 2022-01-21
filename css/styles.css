@@ -78,8 +78,7 @@ section {
     padding-left: 0;
     margin: 0;
     text-align: right;
-    display: flex;
-    justify-content: flex-end;
+
 }
 
 .navbar__menu li {
@@ -97,22 +96,9 @@ section {
 }
 
 
-/*Mobile*/
-@media (max-width: 576px) {
-    .navbar__menu li a {
-        font-size: 11px;
-    }
-}
-
-@media (min-width: 768px) {
-    .navbar__menu li a {
-        font-size: 14px;
-    }
-}
-
 
 .navbar__menu .menu__link {
-    display: block;
+    display: inline-block;
     padding: 1em;
     font-weight: bold;
     text-decoration: none;

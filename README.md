@@ -3,14 +3,16 @@
 ## Table of Contents
 
 * [description](#description)
-* [usage](#usage)
-* [project link](#project_link)
 
 ## description
+### css:
+* changed color of the active class to be more visible  
+* created class for active tab
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
-## usage
+### javaScript:  
+* created new tabs for existing section on the page  
+* every tab is linked to its corresponding section  
+* when hovering or clicking a tab its background and text color changes as an active style
+* when tab is clicked it scrolls to its corresponding section 
+* when a section is visible in the viewport its corresponding tab background changes as and active style
+* when a section is visible in the viewport its background changes as and active style
