@@ -3,15 +3,15 @@
 ## Table of Contents
 
 * [description](#description)
-  * [css changes](#css)
-  * [JavaScript changes](#js)
+  * [css](#css)
+  * [JavaScript](#JavaScript)
 * [project link](#projectink)
 ## description
 ### css
 * changed color of the active class to be more visible  
 * created class for active tab
 
-### js:  
+### JavaScript  
 * created new tabs for existing section on the page  
 * every tab is linked to its corresponding section  
 * when hovering or clicking a tab its background and text color changes as an active style
