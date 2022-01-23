@@ -240,24 +240,3 @@ section.your-active-class .landing__container::after {
 
 
 
-
-
-/*trying something*/
-
-.toggle-menu{
-    color: #c5c3c3;
-    font-size: 22px;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-}
-
-@media (min-width: 768px) {
-    .toggle-menu{
-        display: none;
-    }
-    .navbar__menu ul {
-        display: block;
-    }
-
-}
