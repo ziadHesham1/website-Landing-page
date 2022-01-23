@@ -9,20 +9,30 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:900|Merriweather&display=swap" rel="stylesheet">
     <!-- Load Styles -->
     <link href="css/styles.css" rel="stylesheet">
+
+
+    <!--    importing awesome font -->
+    <script src="https://kit.fontawesome.com/2bbd67029f.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <!-- HTML Follows BEM naming conventions
 IDs are only used for sections to connect menu achors to sections -->
-<div class="page__header">
-    <nav class="navbar__menu">
-        <!-- Navigation starts as empty UL that will be populated with JS -->
-        <ul id="navbar__list">
+<header>
+    <div class="page__header">
 
-        </ul>
-    </nav>
+        <nav class="navbar__menu">
+
+            <!-- Navigation starts as empty UL that will be populated with JS -->
+            <div class="toggle-menu"><i class=" fas fa-bars "></i></div>
+            <ul id="navbar__list">
+
+            </ul>
+        </nav>
 
 
-</div>
+    </div>
+</header>
 <main>
     <header class="main__hero">
         <h1>Landing Page </h1>
@@ -95,6 +105,7 @@ IDs are only used for sections to connect menu achors to sections -->
                 porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
         </div>
     </section>
+
 
 </main>
 <footer class="page__footer">

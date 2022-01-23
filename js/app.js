@@ -20,6 +20,8 @@ function createAnchor(i) {
     let link = document.createElement("a");
     // momkn a8erha w3ml elly felvideo
     // set a href to it's section id
+    link.className = "menu__link";
+
     link.setAttribute(DATA_ATTRIBUTE, `section${i}`);
     // set tab text to section + i
     link.textContent = `Section ${i}`;
@@ -36,7 +38,6 @@ function createTab(i) {
     // create new tab (li)
     let newTab = document.createElement("li");
     // set new tab class
-    newTab.className = "menu__link";
 
     //append link to new tab
     newTab.appendChild(createAnchor(i));
@@ -48,7 +49,7 @@ function createTab(i) {
 sectionsArray.forEach((val, i) => menu.appendChild(createTab(i + 1)));
 
 // create variable holds created li elements
-let menuTabs = Array.from(document.querySelectorAll(".menu__link"));
+let menuTabs = document.querySelectorAll("#navbar__list li");
 
 
 /*
@@ -76,7 +77,6 @@ function toggleActiveTabByClick(clickedTab) {
     menuTabs.forEach((menuTab) => {
         menuTab.classList.remove(TAB_ACTIVE_CLASS);
     });
-    console.log(clickedTab);
 
     clickedTab.classList.add(TAB_ACTIVE_CLASS);
 
@@ -137,6 +137,35 @@ function observerAction(entries) {
 const observer = new IntersectionObserver(observerAction, {threshold: .5});
 
 sectionsArray.forEach(item => observer.observe(item));
+
+
+//trying something
+let newIcon = document.querySelector('.toggle-menu');
+let myass = document.querySelector('.navbar__menu ul');
+let myassli = document.querySelectorAll('.navbar__menu ul li');
+
+function toggleVisibility(x) {
+
+    if (x.style.display === "none") {
+
+        x.style.display = "block";
+
+    } else {
+        x.style.display = "none";
+    }
+}
+
+/*body.onclick = function (){
+    
+    toggleVisibility(menu)
+}*/
+newIcon.onclick = function () {
+    console.log(`yes click me`);
+    toggleVisibility(menu)
+}
+
+
+//------------------------------------------------------------
 
 
 /*what next:
