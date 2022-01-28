@@ -166,6 +166,14 @@ newIcon.onclick = function () {
 
 
 //------------------------------------------------------------
+function myFunction() {
+    let x = document.querySelector(".navbar__menu");
+    if (x.classList.contains("responsive")) {
+        x.classList.remove("responsive")
+    } else {
+        x.classList.add("responsive")
+    }
+}
 
 
 /*what next:

@@ -23,9 +23,6 @@ body {
     color: #fff;
 }
 
-html {
-    scroll-behavior: smooth;
-}
 
 /* Typeography General*/
 h1 {
@@ -70,13 +67,20 @@ section {
 
 
 /* ---- Module Rules ---- */
-/* Navigation Styles*/
 
+/* Navigation Styles*/
+.navbar__menu {
+    display: flex;
+    justify-content: space-between;
+}
 
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
     text-align: right;
+    display: block;
+    width: 100%;
+
 }
 
 .navbar__menu li {
@@ -85,25 +89,63 @@ section {
 
 .navbar__menu .menu__link {
     display: block;
-    padding: 1em;
     font-weight: bold;
     text-decoration: none;
-    color: #000;
 }
 
-.navbar__menu .menu__link:hover, .navbar__menu .your-active-tab a {
+.navbar__menu a {
+    color: #000;
+    padding:16px;
+
+}
+
+.navbar__menu .menu__link:hover, .navbar__menu .your-active-tab {
     background: var(--activeTabColor);
     color: #fff;
-    transition: all ease 0.3s;
+    transition: all 0.3s ease;
+}
+
+.navbar__menu .menu__link:hover a, .navbar__menu .your-active-tab a {
+    color: white;
+}
+
+
+.navbar__menu .icon {
+    font-size: 22px;
+    display: none;
 }
 
 /*Mobile*/
-@media (max-width: 767px) {
-    .navbar__menu ul li{
+@media (max-width: 600px) {
+
+    .navbar__menu .menu__link {
+        display: none;
+    }
+
+    .navbar__menu .icon {
+        display: block;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar__menu.responsive li {
+        display: block;
+        text-align: left;
+    }
+
+
+    .navbar__menu.responsive .menu__link {
+        float: none;
         display: block;
         text-align: center;
+
     }
+
 }
+
 
 
 /* Header Styles */
