@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-* [description](#description)
-  * [css](#css)
+* [Description](#description)
+  * [CSS](#css)
   * [JavaScript](#JavaScript)
-* [project link](#project_link)
+* [Project Link](#project_link)
 ## description
 ### css
 * changed color of the active class to be more visible  
@@ -19,5 +19,5 @@
 * when a section is visible in the viewport its corresponding tab background changes as and active style
 * when a section is visible in the viewport its background changes as and active style
 
-## project link
+## Project Link
 https://ziadhesham1.github.io/FWD-LandingPage/
