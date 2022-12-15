@@ -19,5 +19,5 @@
 * when a section is visible in the viewport its corresponding tab background changes as and active style
 * when a section is visible in the viewport its background changes as and active style
 
-## Project Link
+## project_link
 https://ziadhesham1.github.io/FWD-LandingPage/
